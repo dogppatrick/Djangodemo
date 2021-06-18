@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>profiles </title>
+{% endblock %}
+{% block content %}
+    <table class="table table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>title</th>
+                <th>context</th>
+                <th>date</th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+            {% for profile in profiles %}
+                <tr>
+                    <td>{{ profile.title }}</td>
+                    <td>{{ profile.context }}</td>
+                    <td>{{ profile.date }}</td>
+                </tr>
+            </br>
+            {%endfor%}
+        </tbody>
+    </table>
+{% endblock %}
