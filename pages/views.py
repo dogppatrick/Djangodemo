@@ -18,7 +18,11 @@ def fmap_view(request,point=0,*args, **kwargs):
         ,2: [25.060204, 121.540730]
     }
     lat_tmp = lat_dict.get(point,0)
-    fmap = folium.Map(width=800, height=500, location=lat_tmp, zoom_start=15)
+    user_agent = request.headers['user-agent']
+    if 'Mobile' in user_agent:
+        fmap = folium.Map(width=100, height=60, location=lat_tmp, zoom_start=15)
+    else:
+        fmap = folium.Map(width=800, height=500, location=lat_tmp, zoom_start=15)
     for point in lat_dict:
         folium.Marker(lat_dict[point], icon=folium.Icon(color='red'),popup='lol').add_to(fmap)
     fmap = fmap._repr_html_()
@@ -26,5 +30,5 @@ def fmap_view(request,point=0,*args, **kwargs):
         "title": "fmap_test",
         "map": fmap
     }
-    print(request)
+
     return render(request,"fmap.html",context)
