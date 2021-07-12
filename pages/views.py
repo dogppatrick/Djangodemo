@@ -20,7 +20,7 @@ def fmap_view(request,point=0,*args, **kwargs):
     lat_tmp = lat_dict.get(point,0)
     user_agent = request.headers['user-agent']
     if 'Mobile' in user_agent:
-        fmap = folium.Map(width=100, height=60, location=lat_tmp, zoom_start=15)
+        fmap = folium.Map(width=350, height=200, location=lat_tmp, zoom_start=15)
     else:
         fmap = folium.Map(width=800, height=500, location=lat_tmp, zoom_start=15)
     for point in lat_dict:
