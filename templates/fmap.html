@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
+
+
+{% block content %}
+
+<a class="nav-link" href="../fmap/1" >Point 1</a>
+<a class="nav-link" href="../fmap/2" >Point 2</a>
+</br>
+{% comment %} <a class="nav-link" href="../fmap/" >fmap test</a> {% endcomment %}
+{% comment %} </br> {% endcomment %}
+{{map|safe}}    
+
+{% endblock %}

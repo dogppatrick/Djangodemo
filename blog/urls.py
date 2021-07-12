@@ -16,12 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from pages.views import home_view
+from pages.views import home_view, fmap_view
 from profiles.views import profile_view
 
 urlpatterns = [
     path('', home_view),
     path('home/', home_view),
     path('profiles/', profile_view),
+    path('fmap/', fmap_view),
+    path('fmap/<int:point>', fmap_view),
     path('admin/', admin.site.urls),
 ]
+
+# for i in range(3):
+#     urlpatterns.append(path(f'fmap/{str(i)}', fmap_view,test=1))
