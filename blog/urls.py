@@ -20,7 +20,7 @@ from pages.views import home_view, fmap_view, fmap_detail_view
 from profiles.views import profile_view
 
 urlpatterns = [
-    path('', home_view),
+    path('', fmap_view),
     path('home/', home_view),
     path('profiles/', profile_view),
     path('fmap/', fmap_view),
