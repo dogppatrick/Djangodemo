@@ -1,19 +1,9 @@
-{% extends "base.html" %}
-
-{% block title %}
-    <title>{{ title }}</title>
-{% endblock %}
+{% extends "fmap.html" %}
 
 
-{% block content %}
-<h2> distincts </h2>
-{%  for d in distinct  %}
-    <a class="link" href="/fmap/{{d}}/0" >{{d}}</a>
-{% endfor %}
-<h2> Points </h2>
-{%  for p in points  %}
-    <a class="link" href="/fmap/{{cur_distict}}/{{p}}" >{{p}}</a>
-{% endfor %}
-{{map|safe}}    
-
-{% endblock %}
+{% block point_block %}
+<h2> 地點 </h2>
+    {%  for n,p in points  %}
+        <a class="link" href="/fmap/{{cur_distict}}/{{p}}" >{{n}}</a>
+    {% endfor %}
+{% endblock %} 

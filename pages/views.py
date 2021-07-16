@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import folium
 
-disticts = {
+districts = {
         0:{
           0: [25.155491, 121.632979]
          ,1: [25.152155, 121.632515]
@@ -19,11 +19,13 @@ disticts = {
          ,2: [24.960204, 121.535730]
         },
     }
+districts_name= [f"第{d}天" for d in "一二三"]
+
 def get_fmap(user_agent, center_point,marker_points):
     if 'Mobile' in user_agent:
-        fmap = folium.Map(width=350, height=200, location=center_point, zoom_start=15)
+        fmap = folium.Map(width=150, height=100, location=center_point, zoom_start=15)
     else:
-        fmap = folium.Map(width=800, height=500, location=center_point, zoom_start=15)
+        fmap = folium.Map(width=600, height=350, location=center_point, zoom_start=15)
     for point in marker_points:
         folium.Marker(marker_points[point], icon=folium.Icon(color='red'),popup=f'point {point},{marker_points[point]}').add_to(fmap)
     fmap = fmap._repr_html_()
@@ -39,7 +41,7 @@ def home_view(request,*args, **kwargs):
 
 def fmap_view(request,distict=0,*args, **kwargs):
     
-    dist_tmp = disticts.get(distict,0)
+    dist_tmp = districts.get(distict,0)
     center_point = [sum([point[0] for point in dist_tmp.values()])/len(dist_tmp),sum([point[1] for point in dist_tmp.values()])/len(dist_tmp)]
     user_agent = request.headers['user-agent']
 
@@ -47,13 +49,13 @@ def fmap_view(request,distict=0,*args, **kwargs):
     context = {
         "title": "fmap_test",
         "map": fmap ,
-        "distinct": disticts.keys()
+        "distinct":  [[districts_name[d],d] for d in districts.keys()]
     }
 
     return render(request,"fmap.html",context)
 
 def fmap_detail_view(request,distict=0,point=0,*args, **kwargs):
-    dist_tmp = disticts.get(distict,0)
+    dist_tmp = districts.get(distict,0)
     lat_tmp = dist_tmp.get(point,0)
     user_agent = request.headers['user-agent']
     fmap = get_fmap(user_agent, lat_tmp,dist_tmp)
@@ -61,7 +63,7 @@ def fmap_detail_view(request,distict=0,point=0,*args, **kwargs):
         "title": "fmap_test",
         "map": fmap,
         "cur_distict":distict,
-        "distinct": disticts.keys(),
-        "points":dist_tmp.keys()
+        "distinct": [[districts_name[d],d] for d in districts.keys()],
+        "points":[[d,d] for d in dist_tmp.keys()]
     }
     return render(request,"fmap_detail.html",context)

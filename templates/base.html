@@ -12,13 +12,12 @@
         {% block title %}
         <title>replace the title</title>
         {% endblock %} 
-        {% include "header.html"%}
+        
     </head>
-    <body class='container'> 
-        <div>
-            {% block content %}
-            replace content here
-            {% endblock %} 
-        </div>
+    <body class="container">
+        {% include "header.html"%}
+        {% block content %}
+        replace content here
+        {% endblock %} 
     </body>
 </html>

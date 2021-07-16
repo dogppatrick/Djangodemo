@@ -6,11 +6,22 @@
 
 
 {% block content %}
-<h2>distincts</h2>
-{%  for d in distinct  %}
-    <a class="link" href="/fmap/{{d}}/0" >{{d}}</a>
-{% endfor %}
-
-{{map|safe}}    
-
+    <div class="container">
+        <div class="d-grid gap-3">
+                <div class="p-2"> </div>
+        </div>
+        <div class="row">
+            <div class="col-5">
+                <h2> 日程 </h2>
+                {%  for n,d in distinct  %}
+                    <a class="link" href="/fmap/{{d}}/0" >{{n}}</a>
+                {% endfor %}
+            {% block point_block %}
+            {% endblock %} 
+            </div>
+            <div class="col-7">
+            {{map|safe}}    
+            </div>
+        </div>
+    </div>
 {% endblock %}
