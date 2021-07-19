@@ -73,7 +73,7 @@ def form_view(request,*args, **kwargs):
         "title": "form_test",
     }
     if request.method == 'POST':
-        result = {col:request.POST[col] for col in request.POST}
+        result = {col:request.POST[col] for col in input_col}
         print(f'result :{result}')
         # TODO add result to db
         # redirect to where

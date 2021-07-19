@@ -11,7 +11,7 @@
         {% csrf_token %}
         <table>
         {% for col in input_col%}
-            <input class="form-control" type="text" name="col"  maxlength="150" value = "col">
+            <input class="form-control" type="text" name={{col}}  maxlength="150" value = {{col}}>
         {%endfor%}
         </table>
         <input type="submit" value="送出" />
