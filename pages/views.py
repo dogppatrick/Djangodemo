@@ -31,7 +31,6 @@ def get_fmap(user_agent, center_point,marker_points):
     fmap = fmap._repr_html_()
     return fmap
 
-# Create your views here.
 def home_view(request,*args, **kwargs):
     print(request.user)
     context = {
@@ -67,3 +66,26 @@ def fmap_detail_view(request,distict=0,point=0,*args, **kwargs):
         "points":[[d,d] for d in dist_tmp.keys()]
     }
     return render(request,"fmap_detail.html",context)
+
+def form_view(request,*args, **kwargs):
+    input_col = ['who_are_you']
+    context = {
+        "title": "form_test",
+    }
+    if request.method == 'POST':
+        result = {col:request.POST[col] for col in request.POST}
+        print(f'result :{result}')
+        # TODO add result to db
+        # redirect to where
+        return fmap_view(request,distict=0,*args, **kwargs)
+
+    
+    context['input_col'] = input_col
+
+    return render(request,"form_test.html",context)
+
+def form_result_view(request,*args, **kwargs):
+    context = {
+        "title": "form_test",
+    }
+    return render(request,"form_result.html",context)

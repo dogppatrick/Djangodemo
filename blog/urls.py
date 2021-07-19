@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from pages.views import home_view, fmap_view, fmap_detail_view
+from pages.views import home_view, fmap_view, fmap_detail_view, form_view
 from profiles.views import profile_view
 
 urlpatterns = [
@@ -24,6 +24,7 @@ urlpatterns = [
     path('home/', home_view),
     path('profiles/', profile_view),
     path('fmap/', fmap_view),
+    path('formtest/', form_view),
     path('fmap/<int:distict>', fmap_view),
     path('fmap/<int:distict>/<int:point>', fmap_detail_view),
     path('admin/', admin.site.urls),
